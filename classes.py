@@ -1,5 +1,3 @@
-from ldap3 import Server
-
 
 class ITMsg:  # only for IT, since sectioned into two
     wsparcie = ['pgluszak', 'mwojcik', 'pdrzewiecki']

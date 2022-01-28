@@ -1,6 +1,3 @@
-from rocketchat_API.rocketchat import RocketChat
-from ldap3 import Connection, SAFE_SYNC
-from config import Rchat, Ldap
 from datetime import datetime
 import json
 
