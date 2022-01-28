@@ -1,4 +1,3 @@
-
 class ITMsg:  # only for IT, since sectioned into two
     wsparcie = ['pgluszak', 'mwojcik', 'pdrzewiecki']
     systemy = ['jpiechnik', 'apiechnik', 'swyczalek', 'palbanowski']

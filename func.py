@@ -28,4 +28,3 @@ def log_append(file, data):  # append to log file
     file.write(data + '\n')
     file.close()
     return
-

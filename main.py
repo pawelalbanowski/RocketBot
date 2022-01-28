@@ -7,7 +7,6 @@ from general_message import general_message
 from classes import Teams
 from connections import Connections
 
-
 with sessions.Session() as session:
     rocket = Connections.rocket
     while 1:
