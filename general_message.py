@@ -108,43 +108,43 @@ def general_message(rocket):  # in ListaUzytkownikow
         match group['name']:
             case Teams.it.name:
                 block = general_it_block(rocket)
-                administracja.insert(0, block)
+                administracja.append(block)
             case Teams.place.name:
                 header = 'PŁACE'
                 block = general_msg_block(Teams.place, header, rocket)
-                administracja.insert(3, block)
+                administracja.append(block)
             case Teams.kadry.name:
                 header = 'KADRY'
                 block = general_msg_block(Teams.kadry, header, rocket)
-                administracja.insert(2, block)
+                administracja.append(block)
             case Teams.ksiegowosc.name:
                 header = 'KSIĘGOWOŚĆ'
                 block = general_msg_block(Teams.ksiegowosc, header, rocket)
-                administracja.insert(1, block)
+                administracja.append(block)
             case Teams.dnm.name:
                 header = 'NADZÓR MEDYCZNY'
                 block = general_msg_block(Teams.dnm, header, rocket)
-                administracja.insert(4, block)
+                administracja.append(block)
             case Teams.dla.name:
                 header = 'LOGISTYCZNO ADMINISTRACYJNY'
                 block = general_msg_block(Teams.dla, header, rocket)
-                administracja.insert(5, block)
+                administracja.append(block)
             case Teams.inwentaryzacja.name:
                 header = 'INWENTARYZACJA'
                 block = general_msg_block(Teams.inwentaryzacja, header, rocket)
-                administracja.insert(6, block)
+                administracja.append(block)
             case Teams.zaopatrzenie.name:
                 header = 'ZAOPATRZENIE'
                 block = general_msg_block(Teams.zaopatrzenie, header, rocket)
-                administracja.insert(7, block)
+                administracja.append(block)
             case Teams.orgprawny.name:
                 header = 'ORGANIZACYJNO-PRAWNY'
                 block = general_msg_block(Teams.orgprawny, header, rocket)
-                administracja.insert(8, block)
+                administracja.append(block)
             case Teams.wew.name:
                 header = 'ODDZIAŁ CHORÓB WEWNĘTRZNYCH'
                 block = general_msg_block(Teams.wew, header, rocket)
-                oddzialy.insert(0, block)
+                oddzialy.append(block)
     sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"
