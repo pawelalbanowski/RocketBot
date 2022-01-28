@@ -1,16 +1,15 @@
-from rocketchat_API.rocketchat import RocketChat
 from requests import sessions
 from pprint import pprint
-from ldap3 import Connection, SAFE_SYNC, SUBTREE
+from ldap3 import SUBTREE
 import time
 from func import system_time, json_read, json_write, log_append
 from general_message import general_message
 from classes import Teams
-from config import Ldap, Rchat
+from connections import Connections
 
 
 with sessions.Session() as session:
-    rocket = RocketChat(Rchat.user, Rchat.passw, server_url=Rchat.url)
+    rocket = Connections.rocket
     while 1:
         users = rocket.users_list().json()
         total = users['total']
@@ -20,8 +19,7 @@ with sessions.Session() as session:
             jsonData['totalUsers'] = total
             for user in userList:
                 if user['roles'] == ['user']:  # or user['roles'] == ['user', 'guest']:
-                    conn = Connection(Ldap.server, Ldap.user, Ldap.passw, read_only=True, client_strategy=SAFE_SYNC,
-                                      auto_bind=True)
+                    conn = Connections.conn
                     searchFilter = '(&(objectclass=user)(sAMAccountName=' + user['username'] + '))'
                     status, result, response, _ = conn.search(
                         search_base='OU=Szwajcarska,DC=szpitalsm,DC=local',
