@@ -1,9 +1,6 @@
-from requests import sessions
 from pprint import pprint
 from ldap3 import SUBTREE
-import time
-from func import system_time, json_read, json_write, log_append
-from general_message import general_message
+from func import system_time, log_append
 from classes import Teams
 from connections import Connections
 
