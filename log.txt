@@ -1,0 +1,78 @@
+System time: 19/01/2022, 13:45:09 - Added abronczyk to PlaceSystem time: 19/01/2022, 13:45:10 - Added abronczyk to PlaceSystem time: 19/01/2022, 13:45:11 - Added bkozlowska to KadrySystem time: 19/01/2022, 13:45:11 - Added dsawinska to KadrySystem time: 19/01/2022, 13:45:11 - Added dtuszynska to KadrySystem time: 19/01/2022, 13:45:11 - Added jabramczyk to KadrySystem time: 19/01/2022, 13:45:12 - Added mdomanski to ITSystem time: 19/01/2022, 13:45:12 - Added mkaczmarek to KadrySystem time: 19/01/2022, 13:45:12 - Added mkowalewska to KadrySystem time: 19/01/2022, 13:45:12 - Added mwojcik to ITSystem time: 19/01/2022, 13:45:13 - Added mzytkiewicz to WewnetrznySystem time: 19/01/2022, 13:45:13 - Added pdrzewiecki to ITSystem time: 19/01/2022, 13:45:13 - Added pgluszak to ITSystem time: 19/01/2022, 13:45:13 - Added sbabuszkiewicz to KadrySystem time: 19/01/2022, 13:45:13 - Added ttestowy to WewnetrznySystem time: 19/01/2022, 13:45:14 - Added znowotarska to PlaceUser list updatedSystem time: 19/01/2022, 13:46:09 - Added abronczyk to Place
+System time: 19/01/2022, 13:46:09 - Added bkozlowska to Kadry
+System time: 19/01/2022, 13:46:09 - Added dsawinska to Kadry
+System time: 19/01/2022, 13:46:09 - Added dtuszynska to Kadry
+System time: 19/01/2022, 13:46:10 - Added jabramczyk to Kadry
+System time: 19/01/2022, 13:46:10 - Added mdomanski to IT
+System time: 19/01/2022, 13:46:10 - Added mkaczmarek to Kadry
+System time: 19/01/2022, 13:46:10 - Added mkowalewska to Kadry
+System time: 19/01/2022, 13:46:11 - Added mwojcik to IT
+System time: 19/01/2022, 13:46:11 - Added mzytkiewicz to Wewnetrzny
+System time: 19/01/2022, 13:46:11 - Added pdrzewiecki to IT
+System time: 19/01/2022, 13:46:11 - Added pgluszak to IT
+System time: 19/01/2022, 13:46:12 - Added sbabuszkiewicz to Kadry
+System time: 19/01/2022, 13:46:12 - Added ttestowy to Wewnetrzny
+System time: 19/01/2022, 13:46:12 - Added znowotarska to Place
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+User list updated
+System time: 25/01/2022, 11:06:53 - Added mdziurla to NadzorMedyczny
+User list updated
+System time: 25/01/2022, 11:58:52 - Added ajanowska to NadzorMedyczny
+User list updated
+System time: 25/01/2022, 12:17:25 - Added mmalachowska to NadzorMedyczny
+User list updated
+System time: 25/01/2022, 12:17:56 - Added lszymczak to NadzorMedyczny
+User list updated
+System time: 25/01/2022, 12:19:27 - Added bwilk to NadzorMedyczny
+User list updated
+System time: 25/01/2022, 14:14:37 - Added jbrojewska to NadzorMedyczny
+User list updated
+User list updated
+User list updated
+User list updated
+System time: 27/01/2022, 11:43:20 - Added pwdowski to Ksiegowosc
+User list updated
+System time: 27/01/2022, 11:47:00 - Added wslazak to Ksiegowosc
+User list updated
+System time: 27/01/2022, 11:48:03 - Added jkapela to Ksiegowosc
+User list updated
+System time: 27/01/2022, 11:51:43 - Added mgrabanska to Ksiegowosc
+User list updated
+System time: 27/01/2022, 12:02:42 - Added kfigan to LogistycznoAdministracyjny
+User list updated
+System time: 27/01/2022, 12:08:59 - Added padamczak to Inwentaryzacja
+User list updated
+System time: 27/01/2022, 12:09:31 - Added ddabrowski to Inwentaryzacja
+User list updated
+System time: 27/01/2022, 12:11:05 - Added mbubacz to Inwentaryzacja
+User list updated
+System time: 27/01/2022, 12:18:56 - Added abudych to LogistycznoAdministracyjny
+User list updated
+System time: 27/01/2022, 12:32:31 - Added kkonieczna to LogistycznoAdministracyjny
+User list updated
+System time: 27/01/2022, 12:50:48 - Added kmajchrzak to LogistycznoAdministracyjny
+User list updated
+User list updated
+System time: 28/01/2022, 08:46:41 - Added azaremba to OrganizacyjnoPrawny
+User list updated
+System time: 28/01/2022, 08:51:56 - Added jgozdz to OrganizacyjnoPrawny
+User list updated
