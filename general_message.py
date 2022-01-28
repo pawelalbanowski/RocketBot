@@ -102,49 +102,50 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
 def general_message(rocket):  # in ListaUzytkownikow
     groupsobj = rocket.groups_list_all().json()
     groups = groupsobj['groups']
-    sorted_users = []
+    administracja = []
+    oddzialy = []
     for group in groups:
         match group['name']:
             case Teams.it.name:
                 block = general_it_block(rocket)
-                sorted_users.insert(0, block)
+                administracja.insert(0, block)
             case Teams.place.name:
                 header = 'PŁACE'
                 block = general_msg_block(Teams.place, header, rocket)
-                sorted_users.insert(3, block)
+                administracja.insert(3, block)
             case Teams.kadry.name:
                 header = 'KADRY'
                 block = general_msg_block(Teams.kadry, header, rocket)
-                sorted_users.insert(2, block)
+                administracja.insert(2, block)
             case Teams.ksiegowosc.name:
                 header = 'KSIĘGOWOŚĆ'
                 block = general_msg_block(Teams.ksiegowosc, header, rocket)
-                sorted_users.insert(1, block)
+                administracja.insert(1, block)
             case Teams.dnm.name:
                 header = 'NADZÓR MEDYCZNY'
                 block = general_msg_block(Teams.dnm, header, rocket)
-                sorted_users.insert(4, block)
+                administracja.insert(4, block)
             case Teams.dla.name:
                 header = 'LOGISTYCZNO ADMINISTRACYJNY'
                 block = general_msg_block(Teams.dla, header, rocket)
-                sorted_users.insert(5, block)
+                administracja.insert(5, block)
             case Teams.inwentaryzacja.name:
                 header = 'INWENTARYZACJA'
                 block = general_msg_block(Teams.inwentaryzacja, header, rocket)
-                sorted_users.insert(6, block)
+                administracja.insert(6, block)
             case Teams.zaopatrzenie.name:
                 header = 'ZAOPATRZENIE'
                 block = general_msg_block(Teams.zaopatrzenie, header, rocket)
-                sorted_users.insert(7, block)
+                administracja.insert(7, block)
             case Teams.orgprawny.name:
                 header = 'ORGANIZACYJNO-PRAWNY'
                 block = general_msg_block(Teams.orgprawny, header, rocket)
-                sorted_users.insert(8, block)
+                administracja.insert(8, block)
             case Teams.wew.name:
                 header = 'ODDZIAŁ CHORÓB WEWNĘTRZNYCH'
                 block = general_msg_block(Teams.wew, header, rocket)
-                sorted_users.insert(9, block)
-    sorted_users = '\n\n'.join(sorted(sorted_users))
+                oddzialy.insert(0, block)
+    sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"
     return msg
