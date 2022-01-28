@@ -3,7 +3,8 @@ from requests import sessions
 from pprint import pprint
 from ldap3 import Connection, SAFE_SYNC, SUBTREE
 import time
-from func import general_message, system_time, json_read, json_write, log_append
+from func import system_time, json_read, json_write, log_append
+from general_message import general_message
 from classes import Teams
 from config import Ldap, Rchat
 
@@ -100,11 +101,11 @@ with sessions.Session() as session:
                             # rocket.users_update(user['_id'], nickname='OrganizacyjnoPrawny')
                     rocket.users_update(user['_id'], roles=['user', 'guest'])
                     rocket.channels_invite('KwWXAxZp9E7tEzygt', user['_id'])
-            msg_log = general_message()
+            msg_log = general_message(rocket)
             pprint(msg_log)
             log_append('log.txt', msg_log)
             json_write('txtData.json', jsonData)
         else:
-            msg_log = general_message()
+            msg_log = general_message(rocket)
             pprint(system_time() + ' - No new users' + ', ' + msg_log)
         time.sleep(30.0)
