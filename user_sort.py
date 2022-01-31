@@ -24,6 +24,7 @@ def user_sort(rocket, user):
         dn_inwentaryzacja = ldapUser['dn'].rfind(Teams.inwentaryzacja.getDn())
         dn_zaopatrzenie = ldapUser['dn'].rfind(Teams.zaopatrzenie.getDn())
         dn_orgprawny = ldapUser['dn'].rfind(Teams.orgprawny.getDn())
+        dn_zamowienia = ldapUser['dn'].rfind(Teams.zamowienia.getDn())
         if dn_it != -1:
             rocket.groups_invite(Teams.it.getId(), user['_id'])
             log = system_time() + ' - Added ' + user['username'] + ' to IT'
@@ -84,6 +85,12 @@ def user_sort(rocket, user):
             pprint(log)
             log_append('log.txt', log)
             # rocket.users_update(user['_id'], nickname='OrganizacyjnoPrawny')
+        if dn_zamowienia != -1:
+            rocket.groups_invite(Teams.zamowienia.getId(), user['_id'])
+            log = system_time() + ' - Added ' + user['username'] + ' to Zamówienia'
+            pprint(log)
+            log_append('log.txt', log)
+            # rocket.users_update(user['_id'], nickname='Zamówienia')
     rocket.users_update(user['_id'], roles=['user', 'guest'])
     rocket.channels_invite('KwWXAxZp9E7tEzygt', user['_id'])
     return
