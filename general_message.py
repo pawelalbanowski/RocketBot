@@ -153,6 +153,10 @@ def general_message(rocket):  # in ListaUzytkownikow
                 header = 'DYREKCJA'
                 block = general_msg_block(Teams.dyrekcja, header, rocket)
                 administracja.append(block)
+            case Teams.techniczny.name:
+                header = 'TECHNICZNY'
+                block = general_msg_block(Teams.techniczny, header, rocket)
+                administracja.append(block)
     sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"

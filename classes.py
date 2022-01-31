@@ -40,4 +40,5 @@ class Teams:
     zamowienia = Team('MEckW2gTE8KDXM6GK', 'zamowienia', 'ajackowiak', 'OU=Zamowienia')
     dyrekcja = Team('8hhTD9nqMhXHBxGLx', 'dyrekcja', 'bgruszka', 'OU=Dyrekcja')
     akredytacja = Team('8hhTD9nqMhXHBxGLx', 'dyrekcja', 'vmatecka', 'OU=Akredytacja')
+    techniczny = Team('nn4EPzpefbn6qGJNK', 'dzialtechniczny', 'lgalkowski', 'OU=DzialTechniczny')
     # urologia = Team('YLC3SHMdT7H4LDuBw', 'urologia', '')
