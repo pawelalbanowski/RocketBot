@@ -8,7 +8,7 @@ from connections import Connections
 def user_sort(rocket, user):
     conn = Connections.conn
     search_filter = '(&(objectclass=user)(sAMAccountName=' + user['username'] + '))'
-    status, result, response, _ = conn.search(
+    _, _, response, _ = conn.search(
         search_base='OU=Szwajcarska,DC=szpitalsm,DC=local',
         search_filter=search_filter,
         attributes=['sAMAccountName'],
