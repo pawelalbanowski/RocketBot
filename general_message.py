@@ -2,7 +2,7 @@ from classes import ITMsg, Teams
 from config import Rchat
 
 
-def general_msg_block(team, header, rocket):  # single block of one team
+def general_msg_block(team, rocket):  # single block of one team
     block = []
     members_unformatted = rocket.groups_members(room_id=team.getId()).json()
     members = members_unformatted['members']
@@ -34,7 +34,7 @@ def general_msg_block(team, header, rocket):  # single block of one team
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
     present_str = str(members_present) + '/' + str(all_members)
-    block_str = '*' + header + '* ' + present_str + '\n' + '\n'.join(sorted_block)
+    block_str = '*' + team.header + '* ' + present_str + '\n' + '\n'.join(sorted_block)
     return block_str
 
 
@@ -104,59 +104,19 @@ def general_message(rocket):  # in ListaUzytkownikow
     groups = groupsobj['groups']
     administracja = []
     oddzialy = []
+    teams = Teams().teams
     for group in groups:
-        match group['name']:
-            case Teams.it.name:
+        for team in teams:
+            if group['name'] == 'IT':
                 block = general_it_block(rocket)
                 administracja.append(block)
-            case Teams.place.name:
-                header = 'PŁACE'
-                block = general_msg_block(Teams.place, header, rocket)
-                administracja.append(block)
-            case Teams.kadry.name:
-                header = 'KADRY'
-                block = general_msg_block(Teams.kadry, header, rocket)
-                administracja.append(block)
-            case Teams.ksiegowosc.name:
-                header = 'KSIĘGOWOŚĆ'
-                block = general_msg_block(Teams.ksiegowosc, header, rocket)
-                administracja.append(block)
-            case Teams.dnm.name:
-                header = 'NADZÓR MEDYCZNY'
-                block = general_msg_block(Teams.dnm, header, rocket)
-                administracja.append(block)
-            case Teams.dla.name:
-                header = 'LOGISTYCZNO ADMINISTRACYJNY'
-                block = general_msg_block(Teams.dla, header, rocket)
-                administracja.append(block)
-            case Teams.inwentaryzacja.name:
-                header = 'INWENTARYZACJA'
-                block = general_msg_block(Teams.inwentaryzacja, header, rocket)
-                administracja.append(block)
-            case Teams.zaopatrzenie.name:
-                header = 'ZAOPATRZENIE'
-                block = general_msg_block(Teams.zaopatrzenie, header, rocket)
-                administracja.append(block)
-            case Teams.orgprawny.name:
-                header = 'ORGANIZACYJNO-PRAWNY'
-                block = general_msg_block(Teams.orgprawny, header, rocket)
-                administracja.append(block)
-            case Teams.wew.name:
-                header = 'ODDZIAŁ CHORÓB WEWNĘTRZNYCH'
-                block = general_msg_block(Teams.wew, header, rocket)
-                oddzialy.append(block)
-            case Teams.zamowienia.name:
-                header = 'ZAMÓWIENIA'
-                block = general_msg_block(Teams.zamowienia, header, rocket)
-                administracja.append(block)
-            case Teams.dyrekcja.name:
-                header = 'DYREKCJA'
-                block = general_msg_block(Teams.dyrekcja, header, rocket)
-                administracja.append(block)
-            case Teams.techniczny.name:
-                header = 'TECHNICZNY'
-                block = general_msg_block(Teams.techniczny, header, rocket)
-                administracja.append(block)
+            elif group['name'] == team.getName():
+                block = general_msg_block(team, rocket)
+                match team.getCategory():
+                    case 'administracja':
+                        administracja.append(block)
+                    case 'oddzialy':
+                        oddzialy.append(block)
     sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"
