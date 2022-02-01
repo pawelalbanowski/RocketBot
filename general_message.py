@@ -107,7 +107,7 @@ def general_message(rocket):  # in ListaUzytkownikow
     teams = Teams().teams
     for group in groups:
         for team in teams:
-            if group['name'] == 'IT':
+            if group['name'] == team.getName() and team.getName() == 'IT':
                 block = general_it_block(rocket)
                 administracja.append(block)
             elif group['name'] == team.getName():
