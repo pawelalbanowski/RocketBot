@@ -30,6 +30,9 @@ class Team:
     def getCategory(self):
         return self.category
 
+    def getHeader(self):
+        return self.header
+
 
 class Teams:
         it = Team('mqayX5ocpq39kEwyC', 'IT', 'mdomanski', 'OU=ITPracownicy',

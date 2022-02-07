@@ -104,19 +104,21 @@ def general_message(rocket):  # in ListaUzytkownikow
     groups = groupsobj['groups']
     administracja = []
     oddzialy = []
+    ignore = ['AKREDYTACJA']
     teams = Teams().teams
     for group in groups:
         for team in teams:
-            if group['name'] == team.getName() and team.getName() == 'IT':
-                block = general_it_block(rocket)
-                administracja.append(block)
-            elif group['name'] == team.getName():
-                block = general_msg_block(team, rocket)
-                match team.getCategory():
-                    case 'administracja':
-                        administracja.append(block)
-                    case 'oddzialy':
-                        oddzialy.append(block)
+            if team.getHeader() not in ignore:
+                if group['name'] == team.getName() and team.getName() == 'IT':
+                    block = general_it_block(rocket)
+                    administracja.append(block)
+                elif group['name'] == team.getName():
+                    block = general_msg_block(team, rocket)
+                    match team.getCategory():
+                        case 'administracja':
+                            administracja.append(block)
+                        case 'oddzialy':
+                            oddzialy.append(block)
     sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"
