@@ -17,7 +17,7 @@ def user_sort(rocket, user):
     for ldapUser in response:
         for team in teams:
             if ldapUser['dn'].rfind(team.getDn()) != -1:
-                rocket.groups_invite(team.getId(), user['id'])
+                rocket.groups_invite(team.getId(), user['_id'])
                 log = system_time() + ' - Added ' + user['username'] + ' to ' + team.getName()
                 pprint(log)
                 log_append('log.txt', log)
