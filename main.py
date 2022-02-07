@@ -16,7 +16,7 @@ with sessions.Session() as session:
         if total > jsonData['totalUsers']:
             jsonData['totalUsers'] = total
             for user in userList:
-                if user['roles'] == ['user']:  # or user['roles'] == ['user', 'guest']:
+                if user['roles'] == ['user']:
                     user_sort(rocket, user)
             msg_log = general_message(rocket)
             pprint(msg_log)
