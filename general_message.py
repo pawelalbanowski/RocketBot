@@ -4,8 +4,7 @@ from config import Rchat
 
 def general_msg_block(team, rocket):  # single block of one team
     block = []
-    members_unformatted = rocket.groups_members(room_id=team.getId()).json()
-    members = members_unformatted['members']
+    members = (rocket.groups_members(room_id=team.getId()).json())['members']
     all_members = 0
     members_present = 0
     for member in members:
