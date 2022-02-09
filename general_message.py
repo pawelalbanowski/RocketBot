@@ -105,7 +105,7 @@ def general_message(rocket):  # in ListaUzytkownikow
     groups = groupsobj['groups']
     administracja = []
     szpital = []
-    ignore = ['AKREDYTACJA']
+    ignore = [Teams.akredytacja.getHeader()]
     teams = Teams().teams
     for group in groups:
         for team in teams:
