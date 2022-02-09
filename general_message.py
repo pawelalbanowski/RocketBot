@@ -103,7 +103,7 @@ def general_message(rocket):  # in ListaUzytkownikow
     groupsobj = rocket.groups_list_all().json()
     groups = groupsobj['groups']
     administracja = []
-    oddzialy = []
+    szpital = []
     ignore = ['AKREDYTACJA']
     teams = Teams().teams
     for group in groups:
@@ -117,9 +117,9 @@ def general_message(rocket):  # in ListaUzytkownikow
                     match team.getCategory():
                         case 'administracja':
                             administracja.append(block)
-                        case 'oddzialy':
-                            oddzialy.append(block)
-    sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(oddzialy))
+                        case 'szpital':
+                            szpital.append(block)
+    sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(szpital))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
     msg = "User list updated"
     return msg

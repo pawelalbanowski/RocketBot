@@ -38,7 +38,7 @@ class Teams:
         it = Team('mqayX5ocpq39kEwyC', 'IT', 'mdomanski', 'OU=ITPracownicy',
                   'INFORMATYKA', 'administracja')
         wew = Team('HnS2sggDGCCwik3iz', 'oddzialchorobwewnetrznych', 'mzytkiewicz', 'OU=Wewnetrzny',
-                        'ODDZIAŁ CHORÓB WEWNĘTRZNYCH', 'oddzialy')
+                        'ODDZIAŁ CHORÓB WEWNĘTRZNYCH', 'szpital')
         place = Team('2mPqikSv6JhYm8Dc7', 'place', 'abronczyk', 'OU=Place',
                      'PŁACE', 'administracja')
         kadry = Team('CMKTnYtyGgGBeLer3', 'Kadry', 'mkaczmarek', 'OU=Kadry',
@@ -56,11 +56,13 @@ class Teams:
         orgprawny = Team('uAdQPzEkzMCrdpD8S', 'organizacyjnoprawny', 'anowotarska', 'OU=Organizacja',
                               'ORGANIZACYJNO-PRAWNY', 'administracja')
         zamowienia = Team('MEckW2gTE8KDXM6GK', 'zamowienia', 'ajackowiak', 'OU=Zamowienia',
-                          'ZAMÓWIENIA', 'administracja')
+                          'ZAMÓWIENIA PUBLICZNE', 'administracja')
         dyrekcja = Team('8hhTD9nqMhXHBxGLx', 'dyrekcja', 'bgruszka', 'OU=Dyrekcja',
                         'DYREKCJA', 'administracja')
         akredytacja = Team('8hhTD9nqMhXHBxGLx', 'dyrekcja', 'vmatecka', 'OU=Akredytacja',
                            'AKREDYTACJA', 'administracja')
         techniczny = Team('nn4EPzpefbn6qGJNK', 'dzialtechniczny', 'lgalkowski', 'OU=DzialTechniczny',
-                          'TECHNICZNY', 'administracja')
-        teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja, zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny]
+                          'TECHNICZNO-EKSPLOATACYJNY', 'administracja')
+        apteka = Team('bYRdJrXYLEEcfqj5j', 'apteka', 'dkurasz', 'OU=Apteka', 'APTEKA', 'szpital')
+        teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
+                 zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka]
