@@ -85,17 +85,17 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
                 systemy_present += 1
     systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(systemy_members))
     systemy_str = systemy_header + '\n' + '\n'.join(systemy)
-    mpresence = rocket.users_get_presence(username='mdomanski').json()
+    mpresence = rocket.users_get_presence(username=Teams.it.getKier()).json()
     mhandle = ''
     match mpresence['presence']:
         # case 'offline':
-        #     mhandle = '- - @mdomanski' + ' :black_circle:'
+        #     mhandle = '- - @' + Teams.it.getKier() + ' :black_circle:'
         case 'online':
-            mhandle = '- - @mdomanski'  # + ' :tennis:'
+            mhandle = '- - @' + Teams.it.getKier()  # + ' :tennis:'
         case 'away':
-            mhandle = '- - @mdomanski' + ' - zaraz wracam'  # ' :hourglass:'
+            mhandle = '- - @' + Teams.it.getKier() + ' - zaraz wracam'  # ' :hourglass:'
         case 'busy':
-            mhandle = '- - @mdomanski' + ' - zajęty'  # ' :red_circle:'
+            mhandle = '- - @' + Teams.it.getKier() + ' - zajęty'  # ' :red_circle:'
     block = '\n*INFORMATYKA*\n' + mhandle + '\n' + wsparcie_str + '\n' + systemy_str
     return block
 
