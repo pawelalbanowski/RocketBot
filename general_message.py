@@ -86,6 +86,7 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
     systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(systemy_members))
     systemy_str = systemy_header + '\n' + '\n'.join(systemy)
     mpresence = rocket.users_get_presence(username='mdomanski').json()
+    mhandle = ''
     match mpresence['presence']:
         # case 'offline':
         #     mhandle = '- - @mdomanski' + ' :black_circle:'
