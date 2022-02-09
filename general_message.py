@@ -93,7 +93,7 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
             mhandle = '- - @' + Teams.it.getKier() + ' - zaraz wracam'  # ' :hourglass:'
         case 'busy':
             mhandle = '- - @' + Teams.it.getKier() + ' - zajęty'  # ' :red_circle:'
-    block = '\n*INFORMATYKA*\n' + mhandle + '\n' + wsparcie_str + '\n' + systemy_str
+    block = '\n*' + Teams.it.getHeader() + '*\n' + mhandle + '\n' + wsparcie_str + '\n' + systemy_str
     return block
 
 
