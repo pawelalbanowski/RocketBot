@@ -13,9 +13,8 @@ def user_sort(rocket, user):
         search_filter=search_filter,
         attributes=['sAMAccountName'],
         search_scope=SUBTREE)
-    teams = Teams().teams
     for ldapUser in response:
-        for team in teams:
+        for team in Teams().teams:
             if ldapUser['dn'].rfind(team.getDn()) != -1:
                 rocket.groups_invite(team.getId(), user['_id'])
                 log = system_time() + ' - Added ' + user['username'] + ' to ' + team.getName()

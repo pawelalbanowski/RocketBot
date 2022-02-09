@@ -40,13 +40,11 @@ def general_msg_block(team, rocket):  # single block of one team
 def general_it_block(rocket):  # only for IT in general message, since IT is sectioned
     wsparcie = []
     systemy = []
-    wsparcie_members = ITMsg.wsparcie
-    systemy_members = ITMsg.systemy
     wsparcie_present = 0
     systemy_present = 0
-    for member in wsparcie_members:
-        presence = rocket.users_get_presence(username=member).json()
-        match presence['presence']:
+    for member in ITMsg.wsparcie:
+        presence = (rocket.users_get_presence(username=member).json())['presence']
+        match presence:
             # case 'offline':
             #     handle = '- - @' + member + ' :black_circle:'
             #     wsparcie.append(handle)
@@ -62,11 +60,11 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
                 handle = '- - @' + member + ' - zajęty'  # ' :red_circle:'
                 wsparcie.append(handle)
                 wsparcie_present += 1
-    wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(wsparcie_members))
+    wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(ITMsg.wsparcie))
     wsparcie_str = wsparcie_header + '\n' + '\n'.join(wsparcie)
-    for member in systemy_members:
-        presence = rocket.users_get_presence(username=member).json()
-        match presence['presence']:
+    for member in ITMsg.systemy:
+        presence = (rocket.users_get_presence(username=member).json())['presence']
+        match presence:
             # case 'offline':
             #     handle = '- - @' + member + ' :black_circle:'
             #     systemy.append(handle)
@@ -82,11 +80,11 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
                 handle = '- - @' + member + ' - zajęty'  # ' :red_circle:'
                 systemy.append(handle)
                 systemy_present += 1
-    systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(systemy_members))
+    systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(ITMsg.systemy))
     systemy_str = systemy_header + '\n' + '\n'.join(systemy)
-    mpresence = rocket.users_get_presence(username=Teams.it.getKier()).json()
+    mpresence = (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']
     mhandle = ''
-    match mpresence['presence']:
+    match mpresence:
         # case 'offline':
         #     mhandle = '- - @' + Teams.it.getKier() + ' :black_circle:'
         case 'online':
@@ -100,14 +98,12 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
 
 
 def general_message(rocket):  # in ListaUzytkownikow
-    groupsobj = rocket.groups_list_all().json()
-    groups = groupsobj['groups']
+    groups = (rocket.groups_list_all().json())['groups']
     administracja = []
     szpital = []
     ignore = [Teams.akredytacja.getHeader()]
-    teams = Teams().teams
     for group in groups:
-        for team in teams:
+        for team in Teams().teams:
             if team.getHeader() not in ignore:
                 if group['name'] == team.getName() and team.getName() == 'IT':
                     block = general_it_block(rocket)
