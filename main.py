@@ -1,4 +1,7 @@
+import time
 from pprint import pprint
+from requests import sessions
+from connections import Connections
 from func import system_time, json_read, json_write, log_append
 from general_message import general_message
 from user_sort import user_sort
@@ -21,3 +24,10 @@ def main(rocket):
     else:
         msg_log = general_message(rocket)
         pprint(system_time() + ' - No new users' + ', ' + msg_log)
+
+
+with sessions.Session() as session:
+    rocketchat = Connections.rocket
+    while 1:
+        main(rocketchat)
+        time.sleep(30.0)
