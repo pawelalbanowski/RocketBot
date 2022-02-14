@@ -9,6 +9,7 @@ def general_msg_block(team, rocket):  # single block of one team
     members_present = 0
     for member in members:
         if member['name'] != 'Rocket Bot' and member['name'] != 'Super Admin':
+            all_members += 1
             match member['status']:
                 case 'online':
                     block.append(member['username'])
@@ -19,7 +20,6 @@ def general_msg_block(team, rocket):  # single block of one team
                 case 'busy':
                     block.append(member['username'] + ' - zajęty')
                     members_present += 1
-            all_members += 1
     sorted_block = sorted(list(map(lambda x: ('- @' + x), block)))
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
