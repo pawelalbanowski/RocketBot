@@ -9,14 +9,12 @@ from user_sort import user_sort
 
 def main(rocket):
     users = rocket.users_list().json()
-    total = users['total']
-    user_list = users['users']
     json_data = json_read('txtData.json')
-    if total > json_data['totalUsers']:
-        json_data['totalUsers'] = total
-        for user in user_list:
-            if user['roles'] == ['user']:
-                user_sort(rocket, user)
+    if users['total'] > json_data['totalUsers']:
+        json_data['totalUsers'] = users['total']
+        new_users = list(filter(lambda x: (x['roles'] == ['user']), users['users']))
+        for user in new_users:
+            user_sort(rocket, user)
         msg_log = general_message(rocket)
         pprint(msg_log)
         log_append('log.txt', msg_log)
