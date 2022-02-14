@@ -12,24 +12,19 @@ def general_msg_block(team, rocket):  # single block of one team
             match member['status']:
                 case 'offline':
                     all_members += 1
-                #     handle = '- @' + member['username'] + ' :black_circle:'
-                #     block.append(handle)
                 case 'online':
-                    handle = '- @' + member['username']  # + ' :tennis:'
-                    block.append(handle)
+                    block.append(member['username'])
                     members_present += 1
                     all_members += 1
                 case 'away':
-                    handle = '- @' + member['username'] + ' - zaraz wracam'  # ' :hourglass:'
-                    block.append(handle)
+                    block.append(member['username'] + ' - zaraz wracam')
                     members_present += 1
                     all_members += 1
                 case 'busy':
-                    handle = '- @' + member['username'] + ' - zajęty'  # ' :red_circle:'
-                    block.append(handle)
+                    block.append(member['username'] + ' - zajęty')
                     members_present += 1
                     all_members += 1
-    sorted_block = sorted(block)
+    sorted_block = sorted(list(map(lambda x: ('- @' + x), block)))
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
     present_str = str(members_present) + '/' + str(all_members)
@@ -45,54 +40,41 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
     for member in ITMsg.wsparcie:
         presence = (rocket.users_get_presence(username=member).json())['presence']
         match presence:
-            # case 'offline':
-            #     handle = '- - @' + member + ' :black_circle:'
-            #     wsparcie.append(handle)
             case 'online':
-                handle = '- - @' + member  # + ' :tennis:'
-                wsparcie.append(handle)
+                wsparcie.append(member)
                 wsparcie_present += 1
             case 'away':
-                handle = '- - @' + member + ' - zaraz wracam'  # ' :hourglass:'
-                wsparcie.append(handle)
+                wsparcie.append(member + ' - zaraz wracam')
                 wsparcie_present += 1
             case 'busy':
-                handle = '- - @' + member + ' - zajęty'  # ' :red_circle:'
-                wsparcie.append(handle)
+                wsparcie.append(member + ' - zajęty')
                 wsparcie_present += 1
     wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(ITMsg.wsparcie))
-    wsparcie_str = wsparcie_header + '\n' + '\n'.join(wsparcie)
+    wsparcie_handlers = list(map(lambda x: ('- - @' + x), wsparcie))
+    wsparcie_str = wsparcie_header + '\n' + '\n'.join(wsparcie_handlers)
     for member in ITMsg.systemy:
         presence = (rocket.users_get_presence(username=member).json())['presence']
         match presence:
-            # case 'offline':
-            #     handle = '- - @' + member + ' :black_circle:'
-            #     systemy.append(handle)
             case 'online':
-                handle = '- - @' + member  # + ' :tennis:'
-                systemy.append(handle)
+                systemy.append(member)
                 systemy_present += 1
             case 'away':
-                handle = '- - @' + member + ' - zaraz wracam'  # ' :hourglass:'
-                systemy.append(handle)
+                systemy.append(member + ' - zaraz wracam')
                 systemy_present += 1
             case 'busy':
-                handle = '- - @' + member + ' - zajęty'  # ' :red_circle:'
-                systemy.append(handle)
+                systemy.append(member + ' - zajęty')
                 systemy_present += 1
     systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(ITMsg.systemy))
-    systemy_str = systemy_header + '\n' + '\n'.join(systemy)
-    mpresence = (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']
+    systemy_handlers = list(map(lambda x: ('- - @' + x), systemy))
+    systemy_str = systemy_header + '\n' + '\n'.join(systemy_handlers)
     mhandle = ''
-    match mpresence:
-        # case 'offline':
-        #     mhandle = '- - @' + Teams.it.getKier() + ' :black_circle:'
+    match (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']:
         case 'online':
-            mhandle = '- - @' + Teams.it.getKier()  # + ' :tennis:'
+            mhandle = '- @' + Teams.it.getKier()
         case 'away':
-            mhandle = '- - @' + Teams.it.getKier() + ' - zaraz wracam'  # ' :hourglass:'
+            mhandle = '- @' + Teams.it.getKier() + ' - zaraz wracam'
         case 'busy':
-            mhandle = '- - @' + Teams.it.getKier() + ' - zajęty'  # ' :red_circle:'
+            mhandle = '- @' + Teams.it.getKier() + ' - zajęty'
     block = '\n*' + Teams.it.getHeader() + '*\n' + mhandle + '\n' + wsparcie_str + '\n' + systemy_str
     return block
 
