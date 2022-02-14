@@ -6,7 +6,7 @@ from connections import Connections
 
 
 def user_sort(rocket, user):
-    conn = Connections.conn
+    conn = Connections.ldap
     search_filter = '(&(objectclass=user)(sAMAccountName=' + user['username'] + '))'
     _, _, response, _ = conn.search(
         search_base='OU=Szwajcarska,DC=szpitalsm,DC=local',

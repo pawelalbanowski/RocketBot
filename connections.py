@@ -4,8 +4,8 @@ from config import Rchat, Ldap
 
 
 class Connections:
-    rocket = RocketChat(Rchat.user, Rchat.passw, server_url=Rchat.url)
-    conn = Connection(Ldap.server,
+    rocketchat = RocketChat(Rchat.user, Rchat.passw, server_url=Rchat.url)
+    ldap = Connection(Ldap.server,
                       Ldap.user,
                       Ldap.passw,
                       read_only=True,

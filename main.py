@@ -27,7 +27,7 @@ def main(rocket):
 
 
 with sessions.Session() as session:
-    rocketchat = Connections.rocket
+    rocketchat = Connections.rocketchat
     while 1:
         main(rocketchat)
         time.sleep(30.0)
