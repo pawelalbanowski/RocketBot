@@ -22,15 +22,15 @@ def general_msg_block(team, rocket):  # single block of one team
     return block
 
 
-def it_block(rocket, group, header):
+def it_block(rocket, team, header):
     block = []
     members_present = 0
-    for member in group:
+    for member in team:
         presence = (rocket.users_get_presence(username=member).json())['presence']
         if present(presence):
             block.append(presence_translate(member + ' - ' + presence))
             members_present += 1
-    full_header = '- *' + header + '* ' + str(members_present) + '/' + str(len(group))
+    full_header = '- *' + header + '* ' + str(members_present) + '/' + str(len(team))
     handles = list(map(lambda x: ('- - @' + x), block))
     block = '{}\n{}'.format(full_header, '\n'.join(handles))
     return block
