@@ -24,8 +24,8 @@ def general_msg_block(team, rocket):  # single block of one team
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
     present_str = str(members_present) + '/' + str(all_members)
-    block_str = '*' + team.header + '* ' + present_str + '\n' + '\n'.join(sorted_block)
-    return block_str
+    block = '*{}* {}\n{}'
+    return block.format(team.header, present_str, '\n'.join(sorted_block))
 
 
 def general_it_block(rocket):  # only for IT in general message, since IT is sectioned
@@ -71,8 +71,8 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
             mhandle = '- @' + Teams.it.getKier() + ' - zaraz wracam'
         case 'busy':
             mhandle = '- @' + Teams.it.getKier() + ' - zajęty'
-    block = '\n*' + Teams.it.getHeader() + '*\n' + mhandle + '\n' + wsparcie_str + '\n' + systemy_str
-    return block
+    block = '\n*{}*\n{}\n{}\n{}'
+    return block.format(Teams.it.getHeader(), mhandle, wsparcie_str, systemy_str)
 
 
 def general_message(rocket):  # in ListaUzytkownikow
