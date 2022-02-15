@@ -28,3 +28,11 @@ def log_append(file, data):  # append to log file
     file.write(data + '\n')
     file.close()
     return
+
+
+def presence_translate(data):
+    return data.replace(' - online', '').replace('away', 'zaraz wracam').replace('busy', 'zajęty')
+
+
+def present(data):
+    return data == 'online' or data == 'away' or data == 'busy'

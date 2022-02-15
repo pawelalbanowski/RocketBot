@@ -1,25 +1,19 @@
 from classes import ITMsg, Teams
 from config import Rchat
+from func import presence_translate, present
 
 
 def general_msg_block(team, rocket):  # single block of one team
     block = []
-    members = (rocket.groups_members(room_id=team.getId()).json())['members']
     all_members = 0
     members_present = 0
+    members = (rocket.groups_members(room_id=team.getId()).json())['members']
     for member in members:
         if member['name'] != 'Rocket Bot' and member['name'] != 'Super Admin':
             all_members += 1
-            match member['status']:
-                case 'online':
-                    block.append(member['username'])
-                    members_present += 1
-                case 'away':
-                    block.append(member['username'] + ' - zaraz wracam')
-                    members_present += 1
-                case 'busy':
-                    block.append(member['username'] + ' - zajęty')
-                    members_present += 1
+            if present(member['status']):
+                block.append(presence_translate(member['username'] + ' - ' + member['status']))
+                members_present += 1
     sorted_block = sorted(list(map(lambda x: ('- @' + x), block)))
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
@@ -29,48 +23,35 @@ def general_msg_block(team, rocket):  # single block of one team
 
 
 def general_it_block(rocket):  # only for IT in general message, since IT is sectioned
+    # wsparcie
     wsparcie = []
-    systemy = []
     wsparcie_present = 0
-    systemy_present = 0
     for member in ITMsg.wsparcie:
         presence = (rocket.users_get_presence(username=member).json())['presence']
-        match presence:
-            case 'online':
-                wsparcie.append(member)
-                wsparcie_present += 1
-            case 'away':
-                wsparcie.append(member + ' - zaraz wracam')
-                wsparcie_present += 1
-            case 'busy':
-                wsparcie.append(member + ' - zajęty')
-                wsparcie_present += 1
+        if present(presence):
+            wsparcie.append(presence_translate(member + ' - ' + presence))
+            wsparcie_present += 1
     wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(ITMsg.wsparcie))
     wsparcie_handles = list(map(lambda x: ('- - @' + x), wsparcie))
     wsparcie_str = '{}\n{}'.format(wsparcie_header, '\n'.join(wsparcie_handles))
+
+    # systemy
+    systemy = []
+    systemy_present = 0
     for member in ITMsg.systemy:
         presence = (rocket.users_get_presence(username=member).json())['presence']
-        match presence:
-            case 'online':
-                systemy.append(member)
-                systemy_present += 1
-            case 'away':
-                systemy.append(member + ' - zaraz wracam')
-                systemy_present += 1
-            case 'busy':
-                systemy.append(member + ' - zajęty')
-                systemy_present += 1
+        if present(presence):
+            systemy.append(presence_translate(member + ' - ' + presence))
+            systemy_present += 1
     systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(ITMsg.systemy))
     systemy_handles = list(map(lambda x: ('- - @' + x), systemy))
     systemy_str = '{}\n{}'.format(systemy_header, '\n'.join(systemy_handles))
-    mhandle = ''
-    match (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']:
-        case 'online':
-            mhandle = '- @' + Teams.it.getKier()
-        case 'away':
-            mhandle = '- @' + Teams.it.getKier() + ' - zaraz wracam'
-        case 'busy':
-            mhandle = '- @' + Teams.it.getKier() + ' - zajęty'
+
+    # kierownik
+    presence = (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']
+    mhandle = presence_translate('- @{} - {}'.format(Teams.it.getKier(), presence))
+
+    # całość
     block = '\n*{}*\n{}\n{}\n{}'.format(Teams.it.getHeader(), mhandle, wsparcie_str, systemy_str)
     return block
 
