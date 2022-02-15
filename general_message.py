@@ -22,30 +22,23 @@ def general_msg_block(team, rocket):  # single block of one team
     return block
 
 
-def general_it_block(rocket):  # only for IT in general message, since IT is sectioned
-    # wsparcie
-    wsparcie = []
-    wsparcie_present = 0
-    for member in ITMsg.wsparcie:
+def it_block(rocket, group, header):
+    block = []
+    members_present = 0
+    for member in group:
         presence = (rocket.users_get_presence(username=member).json())['presence']
         if present(presence):
-            wsparcie.append(presence_translate(member + ' - ' + presence))
-            wsparcie_present += 1
-    wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(ITMsg.wsparcie))
-    wsparcie_handles = list(map(lambda x: ('- - @' + x), wsparcie))
-    wsparcie_str = '{}\n{}'.format(wsparcie_header, '\n'.join(wsparcie_handles))
+            block.append(presence_translate(member + ' - ' + presence))
+            members_present += 1
+    full_header = '- *' + header + '* ' + str(members_present) + '/' + str(len(group))
+    handles = list(map(lambda x: ('- - @' + x), block))
+    block = '{}\n{}'.format(full_header, '\n'.join(handles))
+    return block
 
-    # systemy
-    systemy = []
-    systemy_present = 0
-    for member in ITMsg.systemy:
-        presence = (rocket.users_get_presence(username=member).json())['presence']
-        if present(presence):
-            systemy.append(presence_translate(member + ' - ' + presence))
-            systemy_present += 1
-    systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(ITMsg.systemy))
-    systemy_handles = list(map(lambda x: ('- - @' + x), systemy))
-    systemy_str = '{}\n{}'.format(systemy_header, '\n'.join(systemy_handles))
+
+def full_it_block(rocket):  # only for IT in general message, since IT is sectioned
+    wsparcie_str = it_block(rocket, ITMsg.wsparcie, 'SEKCJA WSPARCIA UŻYTKOWNIKÓW')
+    systemy_str = it_block(rocket, ITMsg.systemy, 'SEKCJA SYSTEMÓW INFORMATYCZNYCH')
 
     # kierownik
     presence = (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']
@@ -65,7 +58,7 @@ def general_message(rocket):  # in ListaUzytkownikow
         for team in Teams().teams:
             if team.getHeader() not in ignore:
                 if group['name'] == team.getName() and team.getName() == 'IT':
-                    block = general_it_block(rocket)
+                    block = full_it_block(rocket)
                     administracja.append(block)
                 elif group['name'] == team.getName():
                     block = general_msg_block(team, rocket)
