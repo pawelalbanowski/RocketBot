@@ -24,8 +24,8 @@ def general_msg_block(team, rocket):  # single block of one team
     if sorted_block.count('- @' + team.getKier()) > 0:
         sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
     present_str = str(members_present) + '/' + str(all_members)
-    block = '*{}* {}\n{}'
-    return block.format(team.header, present_str, '\n'.join(sorted_block))
+    block = '*{}* {}\n{}'.format(team.header, present_str, '\n'.join(sorted_block))
+    return block
 
 
 def general_it_block(rocket):  # only for IT in general message, since IT is sectioned
@@ -46,8 +46,8 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
                 wsparcie.append(member + ' - zajęty')
                 wsparcie_present += 1
     wsparcie_header = '- *SEKCJA WSPARCIA UŻYTKOWNIKÓW* ' + str(wsparcie_present) + '/' + str(len(ITMsg.wsparcie))
-    wsparcie_handlers = list(map(lambda x: ('- - @' + x), wsparcie))
-    wsparcie_str = wsparcie_header + '\n' + '\n'.join(wsparcie_handlers)
+    wsparcie_handles = list(map(lambda x: ('- - @' + x), wsparcie))
+    wsparcie_str = '{}\n{}'.format(wsparcie_header, '\n'.join(wsparcie_handles))
     for member in ITMsg.systemy:
         presence = (rocket.users_get_presence(username=member).json())['presence']
         match presence:
@@ -61,8 +61,8 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
                 systemy.append(member + ' - zajęty')
                 systemy_present += 1
     systemy_header = '- *SEKCJA SYSTEMÓW INFORMATYCZNYCH* ' + str(systemy_present) + '/' + str(len(ITMsg.systemy))
-    systemy_handlers = list(map(lambda x: ('- - @' + x), systemy))
-    systemy_str = systemy_header + '\n' + '\n'.join(systemy_handlers)
+    systemy_handles = list(map(lambda x: ('- - @' + x), systemy))
+    systemy_str = '{}\n{}'.format(systemy_header, '\n'.join(systemy_handles))
     mhandle = ''
     match (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']:
         case 'online':
@@ -71,8 +71,8 @@ def general_it_block(rocket):  # only for IT in general message, since IT is sec
             mhandle = '- @' + Teams.it.getKier() + ' - zaraz wracam'
         case 'busy':
             mhandle = '- @' + Teams.it.getKier() + ' - zajęty'
-    block = '\n*{}*\n{}\n{}\n{}'
-    return block.format(Teams.it.getHeader(), mhandle, wsparcie_str, systemy_str)
+    block = '\n*{}*\n{}\n{}\n{}'.format(Teams.it.getHeader(), mhandle, wsparcie_str, systemy_str)
+    return block
 
 
 def general_message(rocket):  # in ListaUzytkownikow
