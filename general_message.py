@@ -53,10 +53,10 @@ def general_message(rocket):  # in ListaUzytkownikow
     groups = (rocket.groups_list_all().json())['groups']
     administracja = []
     szpital = []
-    ignore = [Teams.akredytacja.getHeader()]
+    ignore = [Teams.akredytacja]
     for group in groups:
         for team in Teams().teams:
-            if team.getHeader() not in ignore:
+            if team not in ignore:
                 if group['name'] == team.getName() and team.getName() == 'IT':
                     block = full_it_block(rocket)
                     administracja.append(block)
