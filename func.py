@@ -24,9 +24,9 @@ def json_write(file, data):
 
 
 def log_append(file, data):  # append to log file
-    file = open(file, 'a')
-    file.write(data + '\n')
-    file.close()
+    f = open(file, 'a')
+    f.write(data + '\n')
+    f.close()
     return
 
 
