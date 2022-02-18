@@ -12,7 +12,7 @@ def main(rocket):
     json_data = json_read('txtData.json')
     if users['total'] > json_data['totalUsers']:
         json_data['totalUsers'] = users['total']
-        new_users = list(filter(lambda x: (x['roles'] == ['user']), users['users']))
+        new_users = list(filter(lambda x: ('guest' not in x['roles']), users['users']))
         for user in new_users:
             user_sort(rocket, user)
         msg_log = general_message(rocket)

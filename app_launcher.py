@@ -1,5 +1,7 @@
 from subprocess import run
 from time import sleep
+from func import log_append, system_time
+from pprint import pprint
 
 file_path = "main.py"
 
@@ -15,6 +17,9 @@ def start_script():
 
 def handle_crash():
     sleep(restart_timer)
+    log = system_time() + ' - connection broken, restarting app...'
+    pprint(log)
+    log_append('log.txt', log)
     start_script()
 
 
