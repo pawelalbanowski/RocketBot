@@ -7,7 +7,8 @@ from general_message import general_message
 from user_sort import user_sort
 
 
-def main(rocket):
+def main():
+    rocket = Connections.rocketchat
     users = rocket.users_list().json()
     json_data = json_read('txtData.json')
     if users['total'] > json_data['totalUsers']:
@@ -25,7 +26,6 @@ def main(rocket):
 
 
 with sessions.Session() as session:
-    rocketchat = Connections.rocketchat
     while 1:
-        main(rocketchat)
+        main()
         time.sleep(30.0)
