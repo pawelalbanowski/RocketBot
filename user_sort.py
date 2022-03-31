@@ -23,4 +23,5 @@ def user_sort(rocket, user):
                 break
     rocket.users_update(user['_id'], roles=['user', 'guest'])
     rocket.channels_invite('KwWXAxZp9E7tEzygt', user['_id'])
+    conn.unbind()
     return
