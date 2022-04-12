@@ -25,7 +25,16 @@ def main():
         pprint(system_time() + ' - No new users' + ', ' + msg_log)
 
 
-with sessions.Session() as session:
-    while 1:
-        main()
-        time.sleep(30.0)
+def run():
+    with sessions.Session() as session:
+        while 1:
+            try:
+                main()
+                time.sleep(30.0)
+            except ConnectionError:
+                pprint('ConnectionError')
+                time.sleep(30.0)
+                run()
+
+
+run()
