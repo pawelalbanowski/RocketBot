@@ -32,7 +32,9 @@ def run():
                 main()
                 time.sleep(30.0)
             except ConnectionError:
-                pprint('ConnectionError')
+                log = 'ConnectionError - Restarting...'
+                pprint(log)
+                log_append('log.txt', log)
                 time.sleep(30.0)
                 run()
 
