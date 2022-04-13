@@ -31,7 +31,7 @@ def run():
             try:
                 main()
                 time.sleep(30.0)
-            except (ConnectionError, OSError) as err:
+            except (ConnectionError, OSError, ConnectionResetError, TypeError) as err:
                 log = err + ' - Restarting in 30s...'
                 pprint(log)
                 log_append('log.txt', log)
