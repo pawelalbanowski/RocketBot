@@ -35,6 +35,7 @@ def run():
                 log = err + ' - Restarting in 30s...'
                 pprint(log)
                 log_append('log.txt', log)
+                session.close()
                 time.sleep(30.0)
                 run()
 
