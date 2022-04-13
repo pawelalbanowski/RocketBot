@@ -1,5 +1,7 @@
 import time
 from pprint import pprint
+
+import ldap3.core.exceptions
 from requests import sessions
 from connections import Connections
 from func import system_time, json_read, json_write, log_append
@@ -31,7 +33,11 @@ def run():
             try:
                 main()
                 time.sleep(30.0)
-            except (ConnectionError, OSError, ConnectionResetError, TypeError) as err:
+            except (ConnectionError,
+                    OSError,
+                    ConnectionResetError,
+                    TypeError,
+                    ldap3.core.exceptions.LDAPSocketSendError) as err:
                 log = err + ' - Restarting in 30s...'
                 pprint(log)
                 log_append('log.txt', log)
