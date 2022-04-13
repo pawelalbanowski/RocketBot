@@ -25,6 +25,14 @@ def main():
         pprint(system_time() + ' - No new users' + ', ' + msg_log)
 
 
+def handle_error():
+    log = 'ConnectionError - Restarting in 30s...'
+    pprint(log)
+    log_append('log.txt', log)
+    time.sleep(30.0)
+    run()
+
+
 def run():
     with sessions.Session() as session:
         while 1:
@@ -32,11 +40,9 @@ def run():
                 main()
                 time.sleep(30.0)
             except ConnectionError:
-                log = 'ConnectionError - Restarting in 30s...'
-                pprint(log)
-                log_append('log.txt', log)
-                time.sleep(30.0)
-                run()
+                handle_error()
+            except OSError:
+                handle_error()
 
 
 run()
