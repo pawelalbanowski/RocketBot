@@ -1,3 +1,5 @@
+# deprec
+
 from subprocess import run
 from time import sleep
 from func import log_append, system_time
