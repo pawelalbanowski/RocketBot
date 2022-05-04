@@ -19,7 +19,7 @@ def user_sort(rocket, user):
                 rocket.groups_invite(team.getId(), user['_id'])
                 log = system_time() + ' - Added ' + user['username'] + ' to ' + team.getName()
                 pprint(log)
-                log_append('log.txt', log)
+                log_append('/var/log/RocketBot.log', log)
                 break
     rocket.users_update(user['_id'], roles=['user', 'guest'])
     rocket.channels_invite('KwWXAxZp9E7tEzygt', user['_id'])

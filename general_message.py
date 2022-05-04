@@ -1,6 +1,6 @@
 from classes import ITMsg, Teams
 from config import Rchat
-from func import presence_translate, present
+from func import presence_translate, present, system_time
 
 
 def general_msg_block(team, rocket):  # single block of one team
@@ -69,5 +69,5 @@ def general_message(rocket):  # in ListaUzytkownikow
                             szpital.append(block)
     sorted_users = '\n\n'.join(sorted(administracja)) + '\n\n\n' + '\n\n'.join(sorted(szpital))
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
-    msg = "User list updated"
+    msg = system_time() + ' - User list updated'
     return msg

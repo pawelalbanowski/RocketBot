@@ -6,6 +6,7 @@ from connections import Connections
 from func import system_time, json_read, json_write, log_append
 from general_message import general_message
 from user_sort import user_sort
+import os
 
 
 def main():
@@ -13,19 +14,23 @@ def main():
         try:
             rocket = Connections.rocketchat
             users = rocket.users_list().json()
-            json_data = json_read('txtData.json')
+            json_path = str(os.path.dirname(os.path.realpath(__file__))) + '/txtData.json'
+            json_data = json_read(json_path)
             if users['total'] > json_data['totalUsers']:
                 json_data['totalUsers'] = users['total']
                 new_users = list(filter(lambda x: ('guest' not in x['roles']), users['users']))
                 for user in new_users:
                     user_sort(rocket, user)
-                msg_log = general_message(rocket)
+                if len(new_users) == 0:
+                    msg_log = general_message(rocket) + ' - Total user data updated, no users added to groups'
+                else:
+                    msg_log = general_message(rocket)
                 pprint(msg_log)
-                log_append('log.txt', msg_log)
-                json_write('txtData.json', json_data)
+                log_append('/var/log/RocketBot.log', msg_log)
+                json_write(json_path, json_data)
             else:
                 msg_log = general_message(rocket)
-                pprint(system_time() + ' - No new users' + ', ' + msg_log)
+                pprint('No new users - ' + msg_log)
             session.close()
         except (ConnectionError,
                 OSError,
@@ -37,7 +42,7 @@ def main():
                 ldap3.core.exceptions.LDAPSocketSendError) as err:
             log = err
             pprint(log)
-            log_append('log.txt', log)
+            log_append('/var/log/RocketBot.log', log)
             session.close()
 
 
