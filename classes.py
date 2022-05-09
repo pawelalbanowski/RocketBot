@@ -71,6 +71,8 @@ class Teams:
                          'EPIDEMIOLOGIA', 'administracja')
     bhp = Team('kWauhZNtjLg2RgF7n', 'bhp', 'mmaciejewski', 'OU=Bhp',
                'BHP', 'administracja')
+    fizykoterapia = Team('2epAzHvmKMeqWMvaw', 'fizykoterapia', 'edera', 'OU=Fizykoterapia',
+                         'FIZYKOTERAPIA', 'szpital')
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
-             inwestycje, iso, epidemiologia, bhp]
+             inwestycje, iso, epidemiologia, bhp, fizykoterapia]
