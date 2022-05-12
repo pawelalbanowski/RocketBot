@@ -73,6 +73,8 @@ class Teams:
                'BHP', 'administracja')
     fizykoterapia = Team('2epAzHvmKMeqWMvaw', 'fizykoterapia', 'edera', 'OU=Fizykoterapia',
                          'FIZYKOTERAPIA', 'szpital')
+    labo = Team('baHp67Fm3RAoTt4br', 'laboratorium', 'mlisiecka', 'OU=Laboratorium',
+                'LABORATORIUM', 'szpital')
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
-             inwestycje, iso, epidemiologia, bhp, fizykoterapia]
+             inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo]
