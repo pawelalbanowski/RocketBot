@@ -13,6 +13,7 @@ def user_sort(rocket, user):
         search_filter=search_filter,
         attributes=['sAMAccountName'],
         search_scope=SUBTREE)
+
     for ldapUser in response:
         for team in Teams().teams:
             if ldapUser['dn'].rfind(team.getDn()) != -1:
@@ -21,6 +22,7 @@ def user_sort(rocket, user):
                 pprint(log)
                 log_append('/var/log/RocketBot.log', log)
                 break
+
     rocket.users_update(user['_id'], roles=['user', 'guest'])
     rocket.channels_invite('KwWXAxZp9E7tEzygt', user['_id'])
     conn.unbind()
