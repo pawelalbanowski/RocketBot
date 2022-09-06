@@ -20,13 +20,12 @@ def main():
             if users['total'] > json_data['totalUsers']:
                 json_data['totalUsers'] = users['total']
                 new_users = list(filter(lambda x: ('guest' not in x['roles']), users['users']))
-                
-                for user in new_users:
-                    user_sort(rocket, user)
                     
                 if len(new_users) == 0:
                     msg_log = general_message(rocket) + ' - Total user data updated, no users added to groups'
                 else:
+                    for user in new_users:
+                        user_sort(rocket, user)
                     msg_log = general_message(rocket)
                     
                 pprint(msg_log)
