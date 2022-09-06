@@ -1,7 +1,7 @@
 from classes import ITMsg, Teams
 from config import Rchat
 from func import presence_translate, present, system_time
-from ldap3 import Connection, SAFE_SYNC, SUBTREE
+from ldap3 import Connection, SAFE_SYNC, SUBTREE, AUTO_BIND_NO_TLS
 from connections import Ldap
 
 
@@ -64,12 +64,14 @@ def sekrodd_list(choice):
             searchbase = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
         case 'oddz':
             searchbase = 'CN=DL_PielegniarkiOddzialowe,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
+        case _:
+            return False
     conn = Connection(Ldap.server,
                       Ldap.user,
                       Ldap.passw,
                       read_only=True,
                       client_strategy=SAFE_SYNC,
-                      auto_bind=True)
+                      auto_bind=AUTO_BIND_NO_TLS)
 
     search_filter = '(objectclass=group)'
     _, _, response, _ = conn.search(

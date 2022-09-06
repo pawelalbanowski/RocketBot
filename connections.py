@@ -1,5 +1,5 @@
 from rocketchat_API.rocketchat import RocketChat
-from ldap3 import Connection, SAFE_SYNC
+from ldap3 import Connection, SAFE_SYNC, AUTO_BIND_NO_TLS
 from config import Rchat, Ldap
 
 
@@ -10,4 +10,4 @@ class Connections:
                       Ldap.passw,
                       read_only=True,
                       client_strategy=SAFE_SYNC,
-                      auto_bind=True)
+                      auto_bind=AUTO_BIND_NO_TLS)
