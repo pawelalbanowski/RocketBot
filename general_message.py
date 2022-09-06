@@ -8,7 +8,7 @@ from connections import Ldap
 def general_msg_block(team, rocket, sekretarki, oddzialowe):  # single block of one team
     block = []
     all_members = 0
-    members = (rocket.groups_members(room_id=team.getId()).json())['members']
+    members = (rocket.groups_members(room_id=team.get_id()).json())['members']
 
     for member in members:
         if member['name'] != 'Rocket Bot' and member['name'] != 'Super Admin':
@@ -23,8 +23,8 @@ def general_msg_block(team, rocket, sekretarki, oddzialowe):  # single block of 
                 block.append(active_member)
 
     sorted_block = sorted(list(map(lambda x: ('- @' + x), block)))
-    if sorted_block.count('- @' + team.getKier()) > 0:
-        sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.getKier())))
+    if sorted_block.count('- @' + team.get_kier()) > 0:
+        sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.get_kier())))
 
     present_str = str(len(sorted_block)) + '/' + str(all_members)
     block = '*{}* {}\n{}'.format(team.header, present_str, '\n'.join(sorted_block))
@@ -50,20 +50,22 @@ def full_it_block(rocket):  # only for IT in general message, since IT is sectio
     systemy_str = it_block(rocket, ITMsg.systemy, 'SEKCJA SYSTEMÓW INFORMATYCZNYCH')
 
     # kierownik
-    presence = (rocket.users_get_presence(username=Teams.it.getKier()).json())['presence']
-    mhandle = presence_translate('- @{} - {}'.format(Teams.it.getKier(), presence))
+    presence = (rocket.users_get_presence(username=Teams.it.get_kier()).json())['presence']
+    it_kier_handle = presence_translate('- @{} - {}'.format(Teams.it.get_kier(), presence))
 
     # całość
-    block = '\n*{}*\n{}\n{}\n{}'.format(Teams.it.getHeader(), mhandle, wsparcie_str, systemy_str)
+    block = '\n*{}*\n{}\n{}\n{}'.format(Teams.it.get_header(), it_kier_handle, wsparcie_str, systemy_str)
     return block
 
 
 def sekrodd_list(choice):
     match choice:
         case 'sekr':
-            searchbase = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
+            searchbase = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,' \
+                         'DC=szpitalsm,DC=local '
         case 'oddz':
-            searchbase = 'CN=DL_PielegniarkiOddzialowe,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
+            searchbase = 'CN=DL_PielegniarkiOddzialowe,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,' \
+                         'DC=szpitalsm,DC=local '
         case _:
             return False
     conn = Connection(Ldap.server,
@@ -96,12 +98,12 @@ def general_message(rocket):  # in ListaUzytkownikow
     for group in groups:
         for team in Teams().teams:
             if team not in ignore:
-                if group['name'] == team.getName() and team.getName() == 'IT':
+                if group['name'] == team.get_name() and team.get_name() == 'IT':
                     block = full_it_block(rocket)
                     administracja.append(block)
-                elif group['name'].lower() == team.getName().lower():
+                elif group['name'].lower() == team.get_name().lower():
                     block = general_msg_block(team, rocket, sekretarki, oddzialowe)
-                    match team.getCategory():
+                    match team.get_category():
                         case 'administracja':
                             administracja.append(block)
                         case 'szpital':

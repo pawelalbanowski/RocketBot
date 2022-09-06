@@ -3,7 +3,7 @@ from rocketchat_API.APIExceptions import RocketExceptions
 import ldap3.core.exceptions
 from requests import sessions
 from connections import Connections
-from func import system_time, json_read, json_write, log_append
+from func import json_read, json_write, log_append
 from general_message import general_message
 from user_sort import user_sort
 import os
@@ -29,7 +29,7 @@ def main():
                     msg_log = general_message(rocket)
                     
                 pprint(msg_log)
-                log_append('/var/log/RocketBot.log', msg_log)
+                log_append(msg_log)
                 json_write(json_path, json_data)
             else:
                 msg_log = general_message(rocket)
@@ -47,7 +47,7 @@ def main():
                 ldap3.core.exceptions.LDAPSocketSendError) as err:
             log = err
             pprint(log)
-            log_append('/var/log/RocketBot.log', log)
+            log_append(log)
             session.close()
 
 
@@ -70,7 +70,7 @@ main()
 #                     ldap3.core.exceptions.LDAPSocketSendError) as err:
 #                 log = err + ' - Restarting in 30s...'
 #                 pprint(log)
-#                 log_append('log.txt', log)
+#                 log_append(log)
 #                 session.close()
 #                 time.sleep(30.0)
 #                 run()

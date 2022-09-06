@@ -15,22 +15,22 @@ class Team:
     def __str__(self):
         return str(self.name)
 
-    def getId(self):
+    def get_id(self):
         return self._id
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getKier(self):
+    def get_kier(self):
         return self.kier
 
-    def getDn(self):
+    def get_dn(self):
         return self.dn
 
-    def getCategory(self):
+    def get_category(self):
         return self.category
 
-    def getHeader(self):
+    def get_header(self):
         return self.header
 
 

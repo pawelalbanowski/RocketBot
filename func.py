@@ -23,8 +23,9 @@ def json_write(file, data):
     return
 
 
-def log_append(file, data):  # append to log file
-    f = open(file, 'a')
+def log_append(data):  # append to log file
+    log_file = '/var/log/RocketBot.log'
+    f = open(log_file, 'a')
     f.write(data + '\n')
     f.close()
     return

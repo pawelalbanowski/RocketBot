@@ -16,11 +16,11 @@ def user_sort(rocket, user):
 
     for ldapUser in response:
         for team in Teams().teams:
-            if ldapUser['dn'].rfind(team.getDn()) != -1:
-                rocket.groups_invite(team.getId(), user['_id'])
-                log = system_time() + ' - Added ' + user['username'] + ' to ' + team.getName()
+            if ldapUser['dn'].rfind(team.get_dn()) != -1:
+                rocket.groups_invite(team.get_id(), user['_id'])
+                log = system_time() + ' - Added ' + user['username'] + ' to ' + team.get_name()
                 pprint(log)
-                log_append('/var/log/RocketBot.log', log)
+                log_append(log)
                 break
 
     rocket.users_update(user['_id'], roles=['user', 'guest'])
