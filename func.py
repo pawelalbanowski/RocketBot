@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+from config import LOG_FILE
 
 
 def system_time():
@@ -24,8 +25,7 @@ def json_write(file, data):
 
 
 def log_append(data):  # append to log file
-    log_file = '/var/log/RocketBot.log'
-    f = open(log_file, 'a')
+    f = open(LOG_FILE, 'a')
     f.write(data + '\n')
     f.close()
     return

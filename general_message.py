@@ -58,8 +58,8 @@ def full_it_block(rocket):  # only for IT in general message, since IT is sectio
     return block
 
 
-def sekrodd_list(choice):
-    match choice:
+def sec_group_list(sec_group):
+    match sec_group:
         case 'sekr':
             searchbase = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,' \
                          'DC=szpitalsm,DC=local '
@@ -68,6 +68,7 @@ def sekrodd_list(choice):
                          'DC=szpitalsm,DC=local '
         case _:
             return False
+
     conn = Connection(Ldap.server,
                       Ldap.user,
                       Ldap.passw,
@@ -92,8 +93,8 @@ def general_message(rocket):  # in ListaUzytkownikow
     administracja = []
     szpital = []
     ignore = [Teams.akredytacja]
-    sekretarki = sekrodd_list('sekr')
-    oddzialowe = sekrodd_list('oddz')
+    sekretarki = sec_group_list('sekr')
+    oddzialowe = sec_group_list('oddz')
     
     for group in groups:
         for team in Teams().teams:
