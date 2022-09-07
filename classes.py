@@ -6,32 +6,32 @@ class ITMsg:  # only for IT, since sectioned into two
 class Team:
     def __init__(self, _id, name, kier, dn, header, category):
         self._id = _id
-        self.name = name
-        self.kier = kier
-        self.dn = dn
-        self.header = header
-        self.category = category
+        self._name = name
+        self._kier = kier
+        self._dn = dn
+        self._header = header
+        self._category = category
 
     def __str__(self):
-        return str(self.name)
+        return str(self._name)
 
     def get_id(self):
         return self._id
 
     def get_name(self):
-        return self.name
+        return self._name
 
     def get_kier(self):
-        return self.kier
+        return self._kier
 
     def get_dn(self):
-        return self.dn
+        return self._dn
 
     def get_category(self):
-        return self.category
+        return self._category
 
     def get_header(self):
-        return self.header
+        return self._header
 
 
 class Teams:
