@@ -7,7 +7,7 @@ from connections import Connections
 
 def user_sort(rocket, user):
     conn = Connections.ldap
-    search_filter = '(&(objectclass=user)(sAMAccountName=' + user['username'] + '))'
+    search_filter = f"(&(objectclass=user)(sAMAccountName={user['username']}))"
     _, _, response, _ = conn.search(
         search_base='OU=Szwajcarska,DC=szpitalsm,DC=local',
         search_filter=search_filter,
@@ -18,7 +18,7 @@ def user_sort(rocket, user):
         for team in Teams().teams:
             if ldapUser['dn'].rfind(team.get_dn()) != -1:
                 rocket.groups_invite(team.get_id(), user['_id'])
-                log = system_time() + ' - Added ' + user['username'] + ' to ' + team.get_name()
+                log = f"{system_time()} - Added {user['username']} to {team.get_name()}"
                 pprint(log)
                 log_append(log)
                 break

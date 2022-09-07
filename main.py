@@ -14,7 +14,7 @@ def main():
         try:
             rocket = Connections.rocketchat
             users = rocket.users_list().json()
-            json_path = str(os.path.dirname(os.path.realpath(__file__))) + '/txtData.json'
+            json_path = f"{str(os.path.dirname(os.path.realpath(__file__)))}/txtData.json"
             json_data = json_read(json_path)
             
             if users['total'] > json_data['totalUsers']:
@@ -22,7 +22,7 @@ def main():
                 new_users = list(filter(lambda x: ('guest' not in x['roles']), users['users']))
                     
                 if len(new_users) == 0:
-                    msg_log = general_message(rocket) + ' - Total user data updated, no users added to groups'
+                    msg_log = f'{general_message(rocket)} - Total user data updated, no users added to groups'
                 else:
                     for user in new_users:
                         user_sort(rocket, user)
@@ -33,7 +33,7 @@ def main():
                 json_write(json_path, json_data)
             else:
                 msg_log = general_message(rocket)
-                pprint('No new users - ' + msg_log)
+                pprint(f'No new users - {msg_log}')
                 
             session.close()
             

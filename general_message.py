@@ -20,15 +20,16 @@ def general_message(rocket):  # in ListaUzytkownikow
                         active_member += ' (sekretariat)'
                     if member['name'] in oddzialowe:
                         active_member += ' (oddziałowa/y)'
-                    active_member = presence_translate(active_member + ' - ' + member['status'])
+                    active_member = presence_translate(f"{active_member} - {member['status']}")
                     block.append(active_member)
 
-        sorted_block = sorted(list(map(lambda x: ('- @' + x), block)))
-        if sorted_block.count('- @' + team.get_kier()) > 0:
-            sorted_block.insert(0, sorted_block.pop(sorted_block.index('- @' + team.get_kier())))
+        sorted_block = sorted(list(map(lambda x: f'- @{x}', block)))
+        if sorted_block.count(f'- @{team.get_kier()}') > 0:
+            sorted_block.insert(0, sorted_block.pop(sorted_block.index(f'- @{team.get_kier()}')))
 
-        present_str = str(len(sorted_block)) + '/' + str(all_members)
-        block = '*{}* {}\n{}'.format(team.get_header().lower().title(), present_str, '\n'.join(sorted_block))
+        present_str = f'{str(len(sorted_block))}/{str(all_members)}'
+        sorted_block = '\n'.join(sorted_block)
+        block = f'*{team.get_header().lower().title()}* {present_str}\n{sorted_block}'
         return block
 
     def it_block(rocket, team, header):
@@ -37,11 +38,11 @@ def general_message(rocket):  # in ListaUzytkownikow
         for member in team:
             presence = (rocket.users_get_presence(username=member).json())['presence']
             if present(presence):
-                block.append(presence_translate(member + ' - ' + presence))
+                block.append(presence_translate(f'{member} - {presence}'))
 
-        full_header = '- *' + header + '* ' + str(len(block)) + '/' + str(len(team))
-        handles = list(map(lambda x: ('- - @' + x), block))
-        block = '{}\n{}'.format(full_header, '\n'.join(handles))
+        full_header = f'- *{header}* {str(len(block))}/{str(len(team))}'
+        handles = '\n'.join(list(map(lambda x: ('- - @' + x), block)))
+        block = f'{full_header}\n{handles}'
         return block
 
     def full_it_block(rocket):  # only for IT in general message, since IT is sectioned
@@ -49,12 +50,11 @@ def general_message(rocket):  # in ListaUzytkownikow
         systemy_str = it_block(rocket, ITMsg.systemy, 'Sekcja Systemów Informatycznych')
 
         # kierownik
-        presence = (rocket.users_get_presence(username=Teams.it.get_kier()).json())['presence']
-        it_kier_handle = presence_translate('- @{} - {}'.format(Teams.it.get_kier(), presence))
+        it_kier_presence = (rocket.users_get_presence(username=Teams.it.get_kier()).json())['presence']
+        it_kier_handle = presence_translate(f'- @{Teams.it.get_kier()} - {it_kier_presence}')
 
         # całość
-        block = '\n*{}*\n{}\n{}\n{}'.format(Teams.it.get_header().lower().title(), it_kier_handle, wsparcie_str,
-                                            systemy_str)
+        block = f'\n*{Teams.it.get_header().lower().title()}*\n{it_kier_handle}\n{wsparcie_str}\n{systemy_str}'
         return block
 
     def sec_groups():
@@ -74,10 +74,9 @@ def general_message(rocket):  # in ListaUzytkownikow
             except RecursionError:
                 return []
 
-        sekr_base = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,' \
-                    'DC=szpitalsm,DC=local '
-        oddz_base = 'CN=DL_PielegniarkiOddzialowe,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,' \
-                    'DC=szpitalsm,DC=local '
+        sekr_base = 'CN=DL_SekretarkiOddzialow,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
+        oddz_base = 'CN=DL_PielegniarkiOddzialowe,OU=SzpPracownicy,OU=Medyczni,OU=Pracownicy,OU=Szwajcarska,DC=szpitalsm,DC=local'
+
         sec_groups_list = {
             'sekr': sec_group_list(sekr_base),
             'oddz': sec_group_list(oddz_base)
@@ -104,8 +103,10 @@ def general_message(rocket):  # in ListaUzytkownikow
                             administracja.append(full_block)
                         case 'szpital':
                             szpital.append(full_block)
-                            
-    sorted_users = '---*ADMINISTRACJA*---\n' + '\n\n'.join(sorted(administracja)) + '\n\n\n---*SZPITAL*---\n\n' + '\n\n'.join(sorted(szpital))
+
+    sorted_administracja = '\n\n'.join(sorted(administracja))
+    sorted_szpital = '\n\n'.join(sorted(szpital))
+    sorted_users = f"---*ADMINISTRACJA*---\n{sorted_administracja}\n\n\n---*SZPITAL*---\n\n{sorted_szpital}"
     rocket.chat_update(room_id='GENERAL', msg_id=Rchat.welcome_message_id, text=sorted_users)
-    msg = system_time() + ' - User list updated'
+    msg = f'{system_time()} - User list updated'
     return msg
