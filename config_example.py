@@ -13,3 +13,6 @@ class Rchat:  # constants for rocketchat
     passw = ''
     url = ''
     welcome_message_id = ''
+
+
+LOG_FILE = ''
