@@ -19,7 +19,10 @@ def general_message(rocket):  # in ListaUzytkownikow
                     if member['name'] in sekretarki:
                         active_member += ' (sekretariat)'
                     if member['name'] in oddzialowe:
-                        active_member += ' (oddziałowa/y)'
+                        if member['name'].split(' ', 1)[0][-1] == 'a':
+                            active_member += ' (oddziałowa)'
+                        else:
+                            active_member += ' (oddziałowy)'
                     active_member = presence_translate(f"{active_member} - {member['status']}")
                     block.append(active_member)
 

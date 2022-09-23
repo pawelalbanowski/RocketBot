@@ -141,8 +141,11 @@ class Teams:
     zakazny = Team('Ah9RmqeeHLwoGwCas', 'Zakazny', 'ilisewska', 'OU=Zakazny',
                    'ODDZIAŁ ZAKAŹNY', 'szpital')
 
+    zdo = Team('uqhpo79ws4Mtmekgw', 'ZDO', 'pskrzywanek', 'OU=ZakDiagnostykiObrazowej',
+                   'ZAKŁAD DIAGNOSTYKI OBRAZOWEJ', 'szpital')
+
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
-             okulistyka, ortopedia, reumatologia, sor, zakazny]
+             okulistyka, ortopedia, reumatologia, sor, zakazny, zdo]
