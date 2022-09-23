@@ -142,10 +142,17 @@ class Teams:
                    'ODDZIAŁ ZAKAŹNY', 'szpital')
 
     zdo = Team('uqhpo79ws4Mtmekgw', 'ZDO', 'pskrzywanek', 'OU=ZakDiagnostykiObrazowej',
-                   'ZAKŁAD DIAGNOSTYKI OBRAZOWEJ', 'szpital')
+               'ZAKŁAD DIAGNOSTYKI OBRAZOWEJ', 'szpital')
+
+    eeg = Team('dv4r53hMSqGqanr63', 'EEG', 'ehalke', 'OU=EEG',
+               'PRACOWNIA EEG', 'szpital')
 
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
              okulistyka, ortopedia, reumatologia, sor, zakazny, zdo]
+
+
+teams = Teams()
+teams = [attr for attr in dir(teams) if not callable(getattr(teams, attr)) and not attr.startswith("__")]

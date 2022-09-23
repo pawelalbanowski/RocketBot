@@ -1,4 +1,4 @@
-from classes import ITMsg, Teams
+from classes import ITMsg, Teams, teams
 from config import Rchat
 from func import presence_translate, present, system_time
 from connections import Connections
