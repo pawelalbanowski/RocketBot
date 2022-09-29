@@ -147,11 +147,23 @@ class Teams:
     eeg = Team('dv4r53hMSqGqanr63', 'EEG', 'ehalke', 'OU=EEG',
                'PRACOWNIA EEG', 'szpital')
 
+    poradnie = Team('SPr3z94Don4L9fmuf', 'Poradnie', '', 'OU=PorPracownicy',
+                    'PORADNIE', 'szpital')
+
+    kuchnia = Team('boLvkwh9dw7RwCgCk', 'Kuchnia', '', 'OU=Kuchnia',
+                   'KUCHNIA', 'administracja')
+
+    endoskopia = Team('95saCNyoBknWe8b5r', 'Endoskopia', '', 'OU=EndoskopiaPP',
+                      'ENDOSKOPIA PRZEWODU POKARMOWEGO', 'szpital')
+
+    kancelaria = Team('SAKC9abmHEssGpoSz', 'Kancelaria', '', 'OU=Kancelaria',
+                      'KANCELARIA', 'administracja')
+
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
-             okulistyka, ortopedia, reumatologia, sor, zakazny, zdo]
+             okulistyka, ortopedia, reumatologia, sor, zakazny, zdo, poradnie, kuchnia, endoskopia, kancelaria]
 
 
 teams = Teams()
