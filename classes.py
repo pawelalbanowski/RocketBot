@@ -159,11 +159,18 @@ class Teams:
     kancelaria = Team('SAKC9abmHEssGpoSz', 'Kancelaria', '', 'OU=Kancelaria',
                       'KANCELARIA', 'administracja')
 
+    sterylizacja = Team('daK2tSdrwtCMswTCs', 'Sterylizazja', '', 'OU=Sterylizatornia',
+                        'STERYLIZATORNIA', 'administracja')
+
+    stacjalozek = Team('BgcXqLeNTxHtyY3oM', 'StacjaŁóżek', 'kkucharska', 'OU=Stacja Łóżek',
+                       'STACJA ŁÓŻEK', 'administracja')
+
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
-             okulistyka, ortopedia, reumatologia, sor, zakazny, zdo, poradnie, kuchnia, endoskopia, kancelaria]
+             okulistyka, ortopedia, reumatologia, sor, zakazny, zdo, poradnie, kuchnia, endoskopia,
+             kancelaria, stacjalozek]
 
 
 teams = Teams()
