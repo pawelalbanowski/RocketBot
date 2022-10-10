@@ -64,6 +64,8 @@ def general_message(rocket):  # in ListaUzytkownikow
         def sec_group_list(searchbase):
             try:
                 conn = Connections.ldap
+                if not conn.bind():
+                    return []
                 search_filter = '(objectclass=group)'
                 _, _, response, _ = conn.search(
                     search_base=searchbase,
