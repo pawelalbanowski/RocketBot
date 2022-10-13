@@ -165,12 +165,15 @@ class Teams:
     stacjalozek = Team('BgcXqLeNTxHtyY3oM', 'StacjaŁóżek', 'kkucharska', 'OU=Stacja Łóżek',
                        'STACJA ŁÓŻEK', 'administracja')
 
+    hemodynamika = Team('MY7YjbLh5LtFjxWkR', 'Hemodynamika', 'jrzezniczak', 'OU=Hemodynamika',
+                        'HEMODYNAMIKA', 'szpital')
+
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
              okulistyka, ortopedia, reumatologia, sor, zakazny, zdo, poradnie, kuchnia, endoskopia,
-             kancelaria, stacjalozek]
+             kancelaria, stacjalozek, hemodynamika]
 
 
 teams = Teams()
