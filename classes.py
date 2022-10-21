@@ -168,12 +168,15 @@ class Teams:
     hemodynamika = Team('MY7YjbLh5LtFjxWkR', 'Hemodynamika', 'jrzezniczak', 'OU=Hemodynamika',
                         'HEMODYNAMIKA', 'szpital')
 
+    naczpiel = Team('iA3gKw2HttQox9jcX', 'NaczelnaPielęgniarka', 'agawlowska', 'OU=NaczelnaPielegniarka',
+                    'NACZELNA PIELĘGNIARKA', 'administracja')
+
     teams = [it, wew, place, kadry, ksiegowosc, dnm, dla, inwentaryzacja,
              zaopatrzenie, orgprawny, zamowienia, dyrekcja, akredytacja, techniczny, apteka,
              inwestycje, iso, epidemiologia, bhp, fizykoterapia, labo, urologia, blok, chirkol,
              chirlap, chiruraz, iom, kch, kardiologia, neurochirurgia, neurologiaudary,
              okulistyka, ortopedia, reumatologia, sor, zakazny, zdo, poradnie, kuchnia, endoskopia,
-             kancelaria, stacjalozek, hemodynamika]
+             kancelaria, stacjalozek, hemodynamika, naczpiel]
 
 
 teams = Teams()
